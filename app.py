@@ -9,15 +9,7 @@ import io
 
 st.set_page_config(layout = 'wide', page_title = 'Used Cars EDA')
 
-url = "https://drive.google.com/uc?export=download&id=1CEhGMmpIb0ESL9cK_RS4Q3fhXTKVjpBF"
-
-response = requests.get(url)
-if response.status_code == 200:
-    df = pd.read_csv(io.BytesIO(response.content))
-    print("✅ File loaded successfully!")
-    print(df.head())
-else:
-    print(f"❌ Error downloading file: {response.status_code}")
+df = pd.read_csv('sample.csv')
 
 page = st.sidebar.selectbox('GO To:', ['Data Overview', 'Univariate Analysis', 'Bivariate Analysis', 'Multivariate'])
 
