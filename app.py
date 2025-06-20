@@ -4,11 +4,20 @@ import plotly.express as px
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import requests
+import io
 
 st.set_page_config(layout = 'wide', page_title = 'Used Cars EDA')
-df = pd.read_csv('cleaned data for analysis.csv', index_col= 0)
 
+url = "https://drive.google.com/uc?export=download&id=1CEhGMmpIb0ESL9cK_RS4Q3fhXTKVjpBF"
 
+response = requests.get(url)
+if response.status_code == 200:
+    df = pd.read_csv(io.BytesIO(response.content))
+    print("✅ File loaded successfully!")
+    print(df.head())
+else:
+    print(f"❌ Error downloading file: {response.status_code}")
 
 page = st.sidebar.selectbox('GO To:', ['Data Overview', 'Univariate Analysis', 'Bivariate Analysis', 'Multivariate'])
 
