@@ -9,7 +9,7 @@ import io
 
 st.set_page_config(layout = 'wide', page_title = 'Used Cars EDA')
 
-df = pd.read_csv('sample.csv')
+df = pd.read_csv('sample.csv', index_column = 0)
 
 page = st.sidebar.selectbox('GO To:', ['Data Overview', 'Univariate Analysis', 'Bivariate Analysis', 'Multivariate'])
 
